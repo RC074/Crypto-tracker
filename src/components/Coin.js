@@ -11,6 +11,7 @@ const Coin = ({
   image,
   priceChange,
 }) => {
+  // Formatting date
   const options = {
     year: "numeric",
     month: "numeric",
@@ -18,6 +19,7 @@ const Coin = ({
     hour: "numeric",
     minute: "numeric",
   };
+
   const date = new Date(Date.parse(updatedAt));
   const formattedDate = date.toLocaleDateString(undefined, options);
 

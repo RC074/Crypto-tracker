@@ -1,7 +1,7 @@
 import React from "react";
+
 import fetchData from "./api";
 import Coin from "./components/Coin";
-
 import Header from "./components/Header";
 import Controls from "./components/Controls";
 

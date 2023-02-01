@@ -10,6 +10,7 @@ const fetchData = async (cur) => {
     .then((res) => res.data)
     .catch((err) => console.log(err));
 
+  // will be resolved later in App component
   return dataPromise;
 };
 
