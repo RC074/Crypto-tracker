@@ -4,9 +4,9 @@ import axios from "axios";
 const fetchData = async (cur) => {
   const end_point = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${cur}&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
 
-  console.log("retrieving...");
+  console.log("retrieving from " + end_point);
   const dataPromise = await axios
-    .get(end_point)
+    .get(end_point, { timeout: 2000 })
     .then((res) => res.data)
     .catch((err) => console.log(err));
 

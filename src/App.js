@@ -24,16 +24,19 @@ class App extends React.Component {
   // Wrapper for fetchData
   retrieveCoinData = async () => {
     const data = await fetchData(this.state.currentCurrency);
-    console.log(data);
-    this.setState({ coins: data, filteredCoins: data });
+    // console.log(data);
+    this.setState({ coins: [...data] });
+    this.setState({ filteredCoins: [...data] });
   };
 
   // filter coins based on search params
   filterCoins = () => {
+    console.log(this.state.coins);
     const filtered = this.state.coins.filter((coin) =>
       coin.name.toLowerCase().includes(this.state.search.toLowerCase())
     );
-    this.setState({ filteredCoins: filtered });
+    console.log(filtered);
+    this.setState({ filteredCoins: [...filtered] });
   };
 
   // handler functions
@@ -44,13 +47,15 @@ class App extends React.Component {
   };
 
   handleCurrencyChange = async (changeToCur) => {
+    await this.setState({ coins: [], filteredCoins: [] });
     await this.setState({ currentCurrency: changeToCur });
+    console.log(this.state.currentCurrency);
     await this.retrieveCoinData();
-    this.filterCoins();
+    // this.filterCoins();
   };
 
-  handleRefresh = () => {
-    this.setState({ coins: [], filterCoins: [] });
+  handleRefresh = async () => {
+    await this.setState({ coins: [], filteredCoins: [] });
     this.retrieveCoinData();
   };
 
