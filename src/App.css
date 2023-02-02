@@ -13,19 +13,31 @@
   flex-direction: column;
   align-items: center;
   background-color: #151517;
-
+  width: 100%;
   min-height: 100vh;
+  position: absolute;
+}
+
+.title {
+  font-size: 40px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  color: #7b25e3;
+}
+
+.fa-brands {
+  margin-right: 10px;
 }
 
 /* Controls */
 
 .controls-container {
-  width: 100%;
+  width: 1300px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  position: sticky;
-  top: 20px;
+  position: relative;
+  margin-bottom: 20px;
 }
 
 .btn {
@@ -52,7 +64,10 @@
 }
 
 .coin-search {
-  margin-bottom: 60px;
+  position: sticky;
+  top: 20px;
+  height: 50px;
+  margin-bottom: 30px;
 }
 
 .coin-text {
@@ -60,12 +75,8 @@
   text-align: center;
 }
 
-.input-wrapper {
-  width: 100%;
-}
-
 .coin-input {
-  margin-left: 100px;
+  /* margin-left: 40px; */
   padding-left: 30px;
   width: 500px;
   height: 50px;
@@ -92,11 +103,19 @@
   height: 30px;
   justify-content: space-between;
   border-bottom: 1px solid #d7d7d7;
-  width: 1000px;
+  width: 1300px;
 }
 
 .headers div {
   font-weight: 900;
+}
+
+.fa-solid {
+  margin-left: 5px;
+}
+
+.fa-solid:hover {
+  cursor: pointer;
 }
 
 /* Coin component */
@@ -111,8 +130,12 @@
   justify-content: start;
   align-items: center;
   height: 80px;
-  border-bottom: 1px solid #d7d7d7;
-  width: 1000px;
+  border-bottom: 1px solid #d7d7d75d;
+  width: 1300px;
+}
+
+.sparkline {
+  margin-left: 20px;
 }
 
 .coin {
@@ -125,7 +148,7 @@
 
 .coin h1 {
   font-size: 16px;
-  width: 150px;
+  width: 170px;
 }
 
 .coin img {
@@ -142,7 +165,7 @@
   display: flex;
   text-align: right;
   justify-content: space-between;
-  width: 100%;
+  width: 800px;
 }
 
 .coin-price {
@@ -150,7 +173,7 @@
 }
 
 .coin-volume {
-  width: 170px;
+  width: 190px;
 }
 
 .coin-marketcap {
@@ -167,4 +190,39 @@
 
 .green {
   color: #11d811;
+}
+
+@media only screen and (max-device-width: 1000px) {
+  .headers {
+    width: 80vw;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .controls-container {
+    width: 80vw;
+  }
+
+  .coin-input {
+    width: 80vw;
+  }
+
+  .coin-row {
+    width: 80vw;
+    justify-content: space-between;
+  }
+
+  .coin-data {
+    justify-content: right;
+  }
+
+  .coin-price {
+    margin-left: 10vw;
+  }
+
+  .coin {
+    min-width: 100px;
+  }
 }

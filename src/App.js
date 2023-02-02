@@ -1,4 +1,5 @@
 import React from "react";
+import Modal from "react-modal";
 
 import fetchData from "./api";
 import Coin from "./components/Coin";
@@ -7,6 +8,8 @@ import Controls from "./components/Controls";
 
 import "./App.css";
 import "./currencyButtons.css";
+
+Modal.setAppElement("#root");
 
 class App extends React.Component {
   state = {
@@ -65,6 +68,46 @@ class App extends React.Component {
     );
   };
 
+  handleSort = (sortby) => {
+    if (sortby === "rate") {
+      let temp = [...this.state.filteredCoins];
+      let temp2 = [...this.state.coins];
+      temp.sort((coinA, coinB) =>
+        coinA.current_price < coinB.current_price ? 1 : -1
+      );
+      temp2.sort((coinA, coinB) =>
+        coinA.current_price < coinB.current_price ? 1 : -1
+      );
+      this.setState({ coins: [...temp2], filteredCoins: [...temp] });
+    }
+    if (sortby === "change") {
+      let temp = [...this.state.filteredCoins];
+      let temp2 = [...this.state.coins];
+      temp.sort((coinA, coinB) =>
+        coinA.price_change_percentage_24h < coinB.price_change_percentage_24h
+          ? 1
+          : -1
+      );
+      temp2.sort((coinA, coinB) =>
+        coinA.price_change_percentage_24h < coinB.price_change_percentage_24h
+          ? 1
+          : -1
+      );
+      this.setState({ coins: [...temp2], filteredCoins: [...temp] });
+    }
+    if (sortby === "volume") {
+      let temp = [...this.state.filteredCoins];
+      let temp2 = [...this.state.coins];
+      temp.sort((coinA, coinB) =>
+        coinA.market_cap < coinB.market_cap ? 1 : -1
+      );
+      temp2.sort((coinA, coinB) =>
+        coinA.market_cap < coinB.market_cap ? 1 : -1
+      );
+      this.setState({ coins: [...temp2], filteredCoins: [...temp] });
+    }
+  };
+
   render() {
     return (
       <div
@@ -75,14 +118,25 @@ class App extends React.Component {
             : { backgroundColor: "#fff" }
         }
       >
+        <h1 className="title">
+          <i className="fa-brands fa-bitcoin"></i>Crypto-Tracker
+        </h1>
+        <div className="coin-search">
+          <input
+            className="coin-input"
+            onChange={(e) => this.handleSearchChange(e)}
+            placeholder="Search Any Crypto"
+          />
+        </div>
         <Controls
           mode={this.state.mode}
-          handleSearchChange={this.handleSearchChange}
+          // handleSearchChange={this.handleSearchChange}
           handleCurrencyChange={this.handleCurrencyChange}
           handleRefresh={this.handleRefresh}
           handleModeChange={this.handleModeChange}
         />
-        <Header mode={this.state.mode} />
+
+        <Header mode={this.state.mode} handleSort={this.handleSort} />
         {this.state.coins.length > 0 ? (
           this.state.filteredCoins.map((coin) => {
             return (
@@ -97,6 +151,7 @@ class App extends React.Component {
                 volume={coin.market_cap}
                 image={coin.image}
                 priceChange={coin.price_change_percentage_24h}
+                sparkline={coin.sparkline_in_7d.price}
               />
             );
           })

@@ -54,15 +54,6 @@ const Controls = ({
         </div>
       </div>
 
-      <div className="coin-search">
-        <div className="input-wrapper">
-          <input
-            className="coin-input"
-            onChange={(e) => handleSearchChange(e)}
-            placeholder="Search Any Crypto"
-          />
-        </div>
-      </div>
       <div className="buttonGroup">
         <div>
           <button
